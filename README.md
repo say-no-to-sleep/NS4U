@@ -1,6 +1,6 @@
-# app
+# NS4U - No Stress For You (Name pending)
 
-A new Flutter project.
+A new Task management app.
 
 ## Getting Started
 
