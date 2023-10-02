@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:app/tasks_page.dart';
+import 'package:app/settings_page.dart';
 
 void main() async {
   runApp(const MyApp());
@@ -31,16 +32,17 @@ class RootPage extends StatefulWidget {
 }
 
 class _RootPageState extends State<RootPage> {
-  int currentPage = 0;
+  int currentPage = 1;
   List<Widget> pages = const [
     TaskPage(),
+    SettingsPage(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('NS4U (Experimental)'),
+        title: const Text('NS4U'),
       ),
       body: const TaskPage(),
       floatingActionButton: FloatingActionButton(
