@@ -36,9 +36,6 @@ class _TaskPageState extends State<TaskPage> {
       ),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }
 
 class TaskWidget extends StatefulWidget {
