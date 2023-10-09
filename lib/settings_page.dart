@@ -23,27 +23,62 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  static bool _useDynamicColor = true;
+  static bool _isDarkMode = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // body of the scaffold
       body: SingleChildScrollView(
         child: Column(
-          // a column of options for the user to select and show a bottom sheet
           children: [
             ListTile(
               leading: const Icon(Icons.brush_outlined),
               title: const Text('Themes'),
               onTap: () {
-                // do something
                 showModalBottomSheet(
                   context: context,
                   builder: (context) {
                     return DraggableScrollableSheet(
                       expand: false,
                       builder: (context, scrollController) {
-                        return const Wrap(
-                          children: [],
+                        return StatefulBuilder(
+                          builder: (context, setState) {
+                            return Wrap(
+                              children: [
+                                ListTile(
+                                  leading:
+                                      const Icon(Icons.settings_brightness),
+                                  title: const Text('Use system theme'),
+                                  trailing: Switch(
+                                    value: _useDynamicColor,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        _useDynamicColor = value;
+                                      });
+                                    },
+                                  ),
+                                ),
+                                if (!_useDynamicColor)
+                                  ListTile(
+                                    leading: Icon(_isDarkMode
+                                        ? Icons.dark_mode
+                                        : Icons.light_mode),
+                                    title: Text(_isDarkMode
+                                        ? 'Dark Mode'
+                                        : 'Light Mode'),
+                                    trailing: Switch(
+                                      value: _isDarkMode,
+                                      onChanged: (value) {
+                                        setState(() {
+                                          _isDarkMode = value;
+                                        });
+                                      },
+                                    ),
+                                  ),
+                              ],
+                            );
+                          },
                         );
                       },
                     );

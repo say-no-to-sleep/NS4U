@@ -10,7 +10,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
+
   static final _defaultLightColorScheme =
       ColorScheme.fromSwatch(primarySwatch: Colors.blue);
 
@@ -57,12 +58,9 @@ class _RootPageState extends State<RootPage> {
       appBar: AppBar(
         title: const Text('NS4U'),
       ),
-      body: pages[currentPage],
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          debugPrint('Floating Action Button');
-        },
-        child: const Icon(Icons.add),
+      body: IndexedStack(
+        index: currentPage,
+        children: pages,
       ),
       bottomNavigationBar: NavigationBar(
         destinations: const [
